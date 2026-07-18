@@ -6,3 +6,16 @@
 
 How AI helped: Generated all components (ProductList, SearchBar, ProductForm), sample data, state management logic, and CSS styling in one pass. Verified its own work using headless browser testing before reporting completion, and confirmed a clean production build.
 
+## Manual correction
+
+Found by manually testing the form: after triggering a validation error
+(e.g. empty name or invalid price), the error message stayed on screen
+even after the user started fixing the input — it only cleared on a
+successful resubmit. This was because handleChange updated form state
+but never touched the error state.
+
+Fix: added `if (error) setError('')` inside handleChange, so the error
+clears as soon as the user edits any field. Verified in the browser:
+triggered the error, typed a letter, confirmed the message disappeared
+immediately.
+
