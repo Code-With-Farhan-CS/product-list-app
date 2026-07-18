@@ -7,8 +7,9 @@ function ProductForm({ onAdd }) {
   const [error, setError] = useState('')
 
   function handleChange(field, value) {
-    setForm((prev) => ({ ...prev, [field]: value }))
-  }
+  setForm((prev) => ({ ...prev, [field]: value }))
+  if (error) setError('')
+}
 
   function handleSubmit(e) {
     e.preventDefault()
